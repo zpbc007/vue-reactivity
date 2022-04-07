@@ -4,8 +4,9 @@ const effectSet = new Set<Effect>();
 let _effect: null | Effect = null;
 
 // 设置当前的 effect
-export function setEffect(effect: () => void) {
-    _effect = effect;
+export function effect(fn: Effect) {
+    _effect = fn;
+    fn();
 }
 
 // 让数据成为响应式对象
