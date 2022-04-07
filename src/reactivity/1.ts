@@ -1,11 +1,11 @@
 export type Effect = () => void;
 
 const effectSet = new Set<Effect>();
-let _effect: null | Effect = null;
+let activeEffect: Effect;
 
 // 设置当前的 effect
 export function effect(fn: Effect) {
-    _effect = fn;
+    activeEffect = fn;
     fn();
 }
 
@@ -14,7 +14,7 @@ export function reactive<T extends Record<string, any>>(data: T): T {
     return new Proxy(data, {
         get(target, key) {
             // 存储 effect
-            _effect && effectSet.add(_effect);
+            activeEffect && effectSet.add(activeEffect);
             // 返回读取的值
             return target[key as keyof T];
         },
