@@ -10,13 +10,10 @@ describe('1.ts', () => {
         });
         effect(fn);
 
-        // 初始值
-        expect(data.count).toBe(1);
         expect(fn).toBeCalledTimes(1);
 
         // 设置新值
-        data.count++;
-        expect(data.count).toBe(2);
+        data.count = 2;
         // count 改变，effect 自动执行
         expect(fn).toBeCalledTimes(2);
     });
