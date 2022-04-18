@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from 'vitest';
 import { effect, reactive } from '../src/reactivity/3';
 
-describe('2.ts', () => {
+describe('3.ts', () => {
     it('effect should be called when data change', () => {
         const data = reactive({ count: 1 });
         // 设置当前的 effect
